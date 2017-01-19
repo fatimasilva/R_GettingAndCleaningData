@@ -1,0 +1,58 @@
+---
+title: "Week4 Assignment Codebook"
+output: html_document
+---
+
+This file modifies and updates the original codebook (the README.txt and features_info.txt files in the original dataset) with the data to indicate all the variables and summaries calculated, along with units, and any other relevant information.
+
+## Study Description
+From the [original study description](http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones)
+
+The experiments have been carried out with a group of 30 volunteers within an age bracket of 19-48 years. Each person performed six activities (walking, walking_Upstairs, walking_downstairs, sitting, standing, laying) wearing a smartphone (Samsung Galaxy S II) on the waist. Using its embedded accelerometer and gyroscope, we captured 3-axial linear acceleration and 3-axial angular velocity at a constant rate of 50Hz.
+
+The measures come from the accelerometer and gyroscope 3-axial raw signals tAcc-XYZ and tGyro-XYZ.'-XYZ' is used to denote 3-axial signals in the X, Y and Z directions.
+
+ Also the magnitude of these three-dimensional signals were calculated using the Euclidean norm (tBodyAccMag, tGravityAccMag, tBodyAccJerkMag, tBodyGyroMag, tBodyGyroJerkMag)
+
+The mean and standard deviation and were estimated from these signals, denoted by -mean and -std at the end of the variable name.
+
+A Fast Fourier Transform (FFT) was applied to some of these signals producing fBodyAcc-XYZ, fBodyAccJerk-XYZ, fBodyGyro-XYZ, fBodyAccJerkMag, fBodyGyroMag, fBodyGyroJerkMag. (Note the 'f' to indicate frequency domain signals). 
+
+The weighted average of the frequency components was estimated to obtain a mean frequency, denoted by -meanfreq at the end of the variable name
+
+## Variables
+
+In this dataset, the average of each variable for each activity and each subject was estimated
+
+Grouping variables:
+
+* subject: identifies the volunteer who performed the activity for each window sample. Its range is from 1 to 30.
+
+* activity: the activity that was performed. Six activities were recorded (walking, walking_upstairs, walking_downstairs, sitting, standing and laying)
+
+Grouped variables:
+
+* bodyacceltime-XYZ: body acceleration signals. The acceleration signal from the smartphone accelerometer, for each axis (x, y or z), was separated into body and gravity acceleration signals (bodyacceltime-XYZ and gravityacceltime-XYZ) (see [original study description](http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones) for details). Standard gravity units 'g'
+
+* gravityacceltime-XYZ: gravity acceleration signals. The acceleration signal from the smartphone accelerometer, for each axis (x, y or z), was separated into body and gravity acceleration signals (bodyacceltime-XYZ and gravityacceltime-XYZ) (see [original study description](http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones) for details). Standard gravity units 'g'
+
+* angveloctime-XYZ: angular velocity, gyroscope 3-axial raw signals
+
+* bodyacceljerk-XYZ: The body linear acceleration was derived in time to obtain Jerk signals
+
+* angularveljerk-XYZ: The angular velocity was derived in time to obtain Jerk signals
+
+* fbodyacceltime-XYZ, gravityacceltime-XYZ and fbodyacceljerk-XYZ:
+A Fast Fourier Transform (FFT) was applied to some of the acceleration signals (Note the 'f' to indicate frequency domain signals). 
+
+The set of variables that were estimated from the above signals are:
+
+* Mean value, denoted by -mean at the end of the variable name
+
+* Standard deviation, denoted by -std at the end of the variable name
+
+* Weighted average of the frequency components to obtain a mean frequency, denoted by -meanfreq at the end of the variable name
+
+
+
+

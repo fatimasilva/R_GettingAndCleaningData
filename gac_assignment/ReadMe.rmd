@@ -1,0 +1,28 @@
+---
+title: "ReadMe"
+output: html_document
+---
+
+See the ReadMe included in the original dataset for information about the original study and files. Also see [original study website](http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones) for full details
+
+The extra files generated for the Coursera assignment are:
+
+* 'ReadMe.rmd' (this file)
+
+* 'scripts/run_analysis.R': script that downloads the original dataset and does the following:
+
+  1. Merges the training and the test sets to create one data set.
+
+  2. Extracts only the measurements on the mean and standard deviation for each measurement.
+
+  3. Uses descriptive activity names to name the activities in the data set
+
+  4. Appropriately labels the data set with descriptive variable names.
+
+  5. From the data set in step 4, creates a second, independent tidy data set with the average of each variable for each activity and each subject.
+
+  * Use 'Rscript run_analysis.R' from the command line to run it
+
+* 'tidy/means_by_subject_and_activity.tsv': tidy dataset with the average of each variable for each activity and each subject. See codebook for information about the variables
+
+* 'week4_assignment_codebook.rmd': codebook that modifies and updates the original codebook (README.txt and features_info.txt in the original dataset) with the data to indicate all the variables and summaries calculated, along with units, and any other relevant information
