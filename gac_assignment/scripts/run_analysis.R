@@ -54,6 +54,9 @@ testdf$subject <- testsubject$V1
 testactivities <- read.table("../data/UCI HAR Dataset/test/y_test.txt")
 testdf$activityid <- testactivities$V1
 
+## Add dataset type
+testdf$datasettype <- as.factor('test')
+
 # Prepare train dataset
 
 traindf <- read.table("../data/UCI HAR Dataset/train/X_train.txt", sep = "")
@@ -69,19 +72,18 @@ traindf$subject <- trainsubject$V1
 trainactivities <- read.table("../data/UCI HAR Dataset/train/y_train.txt")
 traindf$activityid <- trainactivities$V1
 
+## Add dataset type
+traindf$datasettype <- as.factor('train')
+
 # Combine train and test datasets
 fulldf <- rbind(testdf, traindf)
 
 # 2. Extract only the measurements on the mean and standard deviation for each measurement
 
-# Extract the mean and std variables. They have tags: '-mean()-', '-std()-', '-meanFreq()-'. 
-meanvariables <- grep("-mean()-", names(fulldf), fixed = TRUE)
-stdvariables <- grep("-std()-", names(fulldf), fixed = TRUE)
-meanfreqvariables <- grep("-meanFreq()-", names(fulldf), fixed = TRUE)
-
 ## get the indexes of the variables we want to keep 
 ## (mean and std plus activity and subject)
-workingvariables <- c(meanvariables,stdvariables, meanfreqvariables,562:563)
+workingvariables <- grep("mean\\(\\)|std\\(\\)|meanFreq\\(\\)|subject|datasettype|activityid", 
+                          names(fulldf), perl = TRUE)
 
 ## subset the dataset to keep only those variables
 workingdf <- fulldf[, workingvariables]
@@ -108,6 +110,7 @@ labels <- gsub('tBodyAcc', 'bodyacceltime', labels)
 labels <- gsub('tGravityAcc', 'gravityacceltime', labels)
 labels <- gsub('tBodyGyro', 'angveloctime', labels)
 labels <- gsub('Jerk', 'jerk', labels)
+labels <- gsub('Mag', 'mag', labels)
 labels <- gsub('BodyAcc', 'bodyaccel', labels)
 labels <- gsub('GravityAcc', 'gravityaccel', labels)
 labels <- gsub('BodyGyro', 'angveloc', labels)
@@ -120,7 +123,7 @@ names(workingdf) <- labels
 # Group by activity and subject
 bysubjectactivity <- group_by(workingdf, subject, activity)
 # Get the average of each variable for each activity and subject
-resultsdf <- summarise_all(bysubjectactivity, funs(avg = mean))
+resultsdf <- summarise_each(bysubjectactivity, funs(avg = mean), -datasettype)
 
 # rename the variables 
 names(resultsdf) <- gsub('(.+)_avg','mean-\\1', names(resultsdf))
